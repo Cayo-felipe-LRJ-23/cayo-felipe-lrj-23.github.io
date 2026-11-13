@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Consolidado LRJ-19</title>
+<meta name="apple-mobile-web-app-title" content="Consolidado LRJ-19">
+<meta name="application-name" content="Consolidado LRJ-19">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#EE4D2D">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+  :root { --lar: #EE4D2D; --lar2: #F6A27F; --tinta: #1f2937; --suave: #64748b; --fundo: #fff7f4; --card: #ffffff; --borda: #fbd5c7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fundo); color: var(--tinta); font-family: "Segoe UI", Roboto, -apple-system, Helvetica, Arial, sans-serif; padding: 28px 16px 40px; }
+  main { max-width: 440px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; }
+  img.ic { width: 112px; height: 112px; border-radius: 26px; box-shadow: 0 8px 22px rgba(238,77,45,.28); }
+  h1 { font-size: 22px; margin: 0; }
+  p.sub { margin: -8px 0 0; color: var(--suave); font-size: 14px; }
+  .card { width: 100%; background: var(--card); border: 1px solid var(--borda); border-radius: 16px; padding: 18px 18px 14px; text-align: left; }
+  .card h2 { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--lar); margin: 0 0 12px; text-align: center; }
+  ol { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 10px; font-size: 15px; line-height: 1.4; }
+  b.chave { color: var(--lar); }
+  .so-ios, .so-android { display: none; }
+  body.ios .so-ios, body.android .so-android { display: block; }
+  a.btn { display: block; width: 100%; padding: 14px; border-radius: 12px; background: var(--lar); color: #fff; font-weight: 700; text-decoration: none; font-size: 15px; }
+  a.btn:focus-visible { outline: 3px solid var(--lar2); outline-offset: 2px; }
+  .abrindo { display: none; color: var(--suave); }
+  body.abrir main > *:not(.abrindo):not(img) { display: none; }
+  body.abrir .abrindo { display: block; }
+</style>
+</head>
+<body>
+<main>
+  <img class="ic" src="icon-512.png" alt="">
+  <h1>Consolidado LRJ-19</h1>
+  <p class="sub">Painel do hub direto na tela do celular</p>
+  <p class="abrindo">Abrindo o painel…</p>
+
+  <section class="card so-ios">
+    <h2>iPhone · Safari</h2>
+    <ol>
+      <li>Toque em <b class="chave">Compartilhar</b> (o quadrado com a seta para cima).</li>
+      <li>Role e toque em <b class="chave">Adicionar à Tela de Início</b>.</li>
+      <li>Toque em <b class="chave">Adicionar</b>. O ícone já vem com o nome certo.</li>
+    </ol>
+  </section>
+
+  <section class="card so-android">
+    <h2>Android · Chrome</h2>
+    <ol>
+      <li>Toque nos <b class="chave">três pontinhos ⋮</b> no canto de cima.</li>
+      <li>Toque em <b class="chave">Adicionar à tela inicial</b> (ou <b class="chave">Instalar app</b>).</li>
+      <li>Toque em <b class="chave">Adicionar</b>.</li>
+    </ol>
+  </section>
+
+  <a class="btn" href="https://script.google.com/macros/s/AKfycbxwpBeO_ZQje7v_bIdg0HKiA8wFu7ycUHVPbvQBSgaBbd1QBB1oa5kzvLjQ6MMrGLeC/exec">Abrir o painel agora</a>
+</main>
+<script>
+  (function () {
+    var LINK = 'https://script.google.com/macros/s/AKfycbxwpBeO_ZQje7v_bIdg0HKiA8wFu7ycUHVPbvQBSgaBbd1QBB1oa5kzvLjQ6MMrGLeC/exec';
+    var ua = navigator.userAgent || '';
+    var ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    document.body.classList.add(ios ? 'ios' : 'android');
+    var standalone = window.navigator.standalone === true || (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+    var veioDoIcone = /[?&]abrir=1/.test(location.search);
+    if (standalone || veioDoIcone) {
+      document.body.classList.add('abrir');
+      location.replace(LINK);
+      return;
+    }
+    /* quem adicionar à tela inicial a partir daqui salva o endereço com ?abrir=1 */
+    try { history.replaceState(null, '', location.pathname + '?abrir=1'); } catch (e) {}
+  })();
+</script>
+</body>
+</html>
